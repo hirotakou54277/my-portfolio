@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'line', text: 'X (Twitter): <a href="https://twitter.com/" target="_blank">your-twitter-id</a>' },
         { type: 'wait', duration: 500 },
         { type: 'line', text: 'READY.' },
-        { type: 'line', text: '<br><a href="index.html" class="back-link">> RETURN_TO_MAIN_FRAME</a>' }
+        { type: 'line', text: '<br><a href="index.html" class="back-link">> 戻る</a>' }
     ];
     // ▲▲▲ プロフィール情報の編集はここまで ▲▲▲
 
@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     processNextLine();
 
 });
+
 
 
 
