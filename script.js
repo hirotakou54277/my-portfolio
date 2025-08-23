@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const profileData = [
         { type: 'header', text: 'SYSTEM BOOT...' },
         { type: 'wait', duration: 1000 },
-        { type: 'header', text: 'LOADING USER_DATA: [AGENT_NAME]' },
+        { type: 'header', text: 'USER_DATA を読み込んでいます: [hirokunn]' },
         { type: 'wait', duration: 1500 },
-        { type: 'line', text: 'ACCESS GRANTED.' },
+        { type: 'line', text: 'アクセスを許可しました。' },
         { type: 'wait', duration: 500 },
         { type: 'clear' },
         { type: 'header', text: '<h2 class="glitch" data-text="-- IDENTIFICATION --">-- IDENTIFICATION --</h2>' },
         { type: 'line', text: '<span class="label">HANDLE:</span> ひろくん' },
         { type: 'line', text: '<span class="label">CLASS:</span> プログラマー' },
-        { type: 'line', text: '<span class="label">STATUS:</span> ONLINE // Analyzing Data...' },
+        { type: 'line', text: '<span class="label">STATUS:</span> ONLINE // データを分析しています...' },
         { type: 'wait', duration: 1000 },
         { type: 'header', text: '<h2>-- SKILLS --</h2>' },
         { type: 'list', items: ['アプリ開発 / AIプログラミング', 'ホームページ', 'オーディオ', 'PA機材', 'youtube配信セット', 'PV作成', '動画編集', 'チラシ', '名刺', '業務システム開発', 'ホームシアター'] },
@@ -128,4 +128,5 @@ document.addEventListener('DOMContentLoaded', () => {
     processNextLine();
 
 });
+
 
