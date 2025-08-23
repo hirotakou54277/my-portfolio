@@ -13,18 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'wait', duration: 500 },
         { type: 'clear' },
         { type: 'header', text: '<h2 class="glitch" data-text="-- IDENTIFICATION --">-- IDENTIFICATION --</h2>' },
-        { type: 'line', text: '<span class="label">HANDLE:</span> あなたのニックネーム' },
-        { type: 'line', text: '<span class="label">CLASS:</span> Netrunner' },
+        { type: 'line', text: '<span class="label">HANDLE:</span> ひろくん' },
+        { type: 'line', text: '<span class="label">CLASS:</span> プログラマー' },
         { type: 'line', text: '<span class="label">STATUS:</span> ONLINE // Analyzing Data...' },
         { type: 'wait', duration: 1000 },
         { type: 'header', text: '<h2>-- SKILLS --</h2>' },
-        { type: 'list', items: ['JavaScript / TypeScript', 'React / Next.js', 'Node.js', 'Python', 'System Design'] },
+        { type: 'list', items: ['アプリ開発 / AIプログラミング', 'ホームページ', 'オーディオ', 'PA機材', 'youtube配信セット', 'PV作成', '動画編集', 'チラシ', '名刺', '業務システム開発', 'ホームシアター'] },
         { type: 'wait', duration: 1000 },
         { type: 'header', text: '<h2>-- PROJECTS --</h2>' },
-        { type: 'list', items: ['Project Alpha: [簡単な説明]', 'Project Beta: [簡単な説明]'] },
+        { type: 'list', items: ['Project Alpha: [AIプログラミング]', 'Project Beta: [アプリ制作]'] },
         { type: 'wait', duration: 1000 },
         { type: 'header', text: '<h2>-- CONTACT --</h2>' },
-        { type: 'line', text: 'GitHub: <a href="https://github.com/" target="_blank">your-github-id</a>' },
+        { type: 'line', text: 'GitHub: <a href="https://github.com/" target="_blank">hirotakou54277</a>' },
         { type: 'line', text: 'X (Twitter): <a href="https://twitter.com/" target="_blank">your-twitter-id</a>' },
         { type: 'wait', duration: 500 },
         { type: 'line', text: 'READY.' },
@@ -128,3 +128,4 @@ document.addEventListener('DOMContentLoaded', () => {
     processNextLine();
 
 });
+
