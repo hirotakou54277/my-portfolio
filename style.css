@@ -1,4 +1,4 @@
-/* top_style.css (レスポンシブ対応版) */
+/* style.css */
 :root {
     --bg-color: #0a0a0a;
     --text-color: #00ff41;
@@ -10,23 +10,32 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'VT323', monospace;
+    font-family: 'VT323', monospace; /* ターミナル風のフォント */
     font-size: 1.2rem;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     padding: 20px;
-    box-sizing: border-box;
+    text-shadow: 0 0 5px var(--shadow-color);
+    overflow: hidden; /* ページ全体のスクロールを禁止 */
 }
 
+/* ブラウン管の走査線（スキャンライン）エフェクト */
 .scanlines {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient( to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50% );
-    background-size: 100% 4px; z-index: 10; pointer-events: none; animation: flicker 0.15s infinite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none; /* マウス操作を妨げないようにする */
+    animation: flicker 0.15s infinite;
 }
 
+/* 画面全体のちらつき（フリッカー）エフェクト */
 @keyframes flicker {
     0%   { opacity: 0.2; }
     20%  { opacity: 1; }
@@ -34,164 +43,127 @@ body {
     100% { opacity: 1; }
 }
 
-.container {
-    width: 90vw;
-    height: 90vh;
-    max-width: 1400px;
-    max-height: 800px;
-    display: flex;
-    border: 1px solid var(--text-color);
-    box-shadow: 0 0 15px var(--shadow-color), inset 0 0 10px var(--shadow-color);
-    background: rgba(10, 10, 10, 0.5);
-}
-
-.left-panel {
-    width: 60%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid var(--text-color);
-}
-
-.top-image-area {
-    height: 30%;
-    background-color: #111;
-    overflow: hidden;
-    border-bottom: 1px solid var(--text-color);
-}
-
-.left-image-area {
-    height: 70%;
-    background-color: #000;
-    overflow: hidden;
-}
-
-.top-image-area video, .left-image-area video {
+.terminal {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
+    height: calc(100vh - 40px);
+    border: 1px solid var(--text-color);
+    box-shadow: 0 0 10px var(--shadow-color), inset 0 0 10px var(--shadow-color);
+    padding: 15px;
+    overflow-y: auto; /* 内容が増えたらスクロールできるように */
 }
 
-.right-panel {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 40px;
-    box-sizing: border-box;
+#terminal-output p, 
+#terminal-output h2,
+#terminal-output ul {
+    margin: 0 0 1em 0;
+    opacity: 0; /* JSで表示を制御するため最初は非表示 */
+    animation: fadeIn 0.5s forwards;
 }
 
-header {
-    margin-bottom: 40px;
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 
-h1 {
-    font-size: 3rem;
-    text-align: left;
-    text-shadow: 0 0 5px var(--shadow-color);
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-nav ul li {
-    margin-bottom: 20px;
-}
-
-nav ul li a {
+h2 {
     color: var(--text-color);
-    text-decoration: none;
-    font-size: 1.8rem;
-    transition: all 0.2s ease-in-out;
-    display: inline-block;
+    text-transform: uppercase;
 }
 
-nav ul li a:hover {
+.label {
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+}
+ul li::before {
+    content: '■ '; /* リストのマーカー */
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+a:hover {
     background-color: var(--text-color);
     color: var(--bg-color);
-    text-shadow: none;
-    padding: 0 10px;
-    transform: translateX(10px);
+    text-decoration: none;
 }
 
 /* グリッチエフェクト */
-.glitch { position: relative; display: inline-block; }
-.glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; background: var(--bg-color); }
-.glitch::before { left: 2px; text-shadow: -2px 0 var(--glitch-color-1); animation: glitch-anim 3s infinite linear alternate-reverse; }
-.glitch::after { left: -2px; text-shadow: -2px 0 var(--text-color); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
-@keyframes glitch-anim {
+.glitch {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg-color);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--glitch-color-1);
+    animation: glitch 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--glitch-color-2);
+    animation: glitch 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
     0%   { clip-path: inset(89% 0 1% 0); }
+    5%   { clip-path: inset(34% 0 35% 0); }
+    10%  { clip-path: inset(93% 0 4% 0); }
+    15%  { clip-path: inset(49% 0 49% 0); }
+    20%  { clip-path: inset(18% 0 42% 0); }
+    25%  { clip-path: inset(98% 0 2% 0); }
+    30%  { clip-path: inset(76% 0 18% 0); }
+    35%  { clip-path: inset(28% 0 67% 0); }
+    40%  { clip-path: inset(21% 0 17% 0); }
+    45%  { clip-path: inset(93% 0 1% 0); }
+    50%  { clip-path: inset(36% 0 24% 0); }
+    55%  { clip-path: inset(3% 0 23% 0); }
+    60%  { clip-path: inset(55% 0 35% 0); }
+    65%  { clip-path: inset(95% 0 2% 0); }
+    70%  { clip-path: inset(13% 0 48% 0); }
+    75%  { clip-path: inset(58% 0 3% 0); }
+    80%  { clip-path: inset(45% 0 54% 0); }
+    85%  { clip-path: inset(10% 0 52% 0); }
+    90%  { clip-path: inset(82% 0 1% 0); }
+    95%  { clip-path: inset(45% 0 15% 0); }
     100% { clip-path: inset(69% 0 18% 0); }
 }
 
-
-/* =============================================== */
-/* ▼▼▼ ここからレスポンシブ対応のためのコード ▼▼▼ */
-/* =============================================== */
-
-/* 画面幅が768px以下の場合に適用されるスタイル */
-@media (max-width: 768px) {
-    body {
-        /* スマホではスクロールできるようにする */
-        overflow: auto;
-        padding: 0; /* bodyの余白をなくす */
-    }
-
-    .container {
-        /* パネルを横並びから縦積みに変更 */
-        flex-direction: column;
-        
-        /* 高さと幅を画面に合わせ、スクロール可能にする */
-        width: 100%;
-        height: auto;
-        min-height: 100vh;
-        max-height: none;
-
-        border: none; /* 画面いっぱいに表示するため枠線を消す */
-    }
-
-    .left-panel,
-    .right-panel {
-        /* 各パネルの横幅を100%にする */
-        width: 100%;
-        border: none; /* パネル間の線を消す */
-    }
-
-    .left-panel {
-        /* スマホでの動画エリアの高さを設定 */
-        height: 60vh;
-    }
-
-    .right-panel {
-        height: auto; /* 高さをコンテンツに合わせる */
-        padding: 30px;
-        text-align: center; /* メニューを中央揃えに */
-    }
-
-    header {
-        margin-bottom: 30px;
-    }
-
-    h1 {
-        font-size: 2.5rem; /* 少し文字を小さく */
-        text-align: center;
-    }
-    
-    nav ul {
-        text-align: center;
-    }
-    
-    nav ul li a {
-        font-size: 1.5rem; /* 少し文字を小さく */
-    }
-
-    nav ul li a:hover {
-        transform: none; /* ホバー時の動きをなくす */
-    }
+/* プロンプトとカーソル */
+.prompt-line {
+    display: flex;
+    align-items: center;
 }
+.prompt {
+    margin-right: 0.5em;
+}
+#cursor {
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
