@@ -1,0 +1,82 @@
+/* links_style.css */
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #87CEEB; /* ライトブルー */
+    --shadow-color: rgba(135, 206, 235, 0.5); /* ライトブルーの影 */
+    --glitch-color-1: #add8e6;
+    --glitch-color-2: #b0e0e6;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    /* ↓↓ 保存したイラスト風の画像ファイル名を指定してください ↓↓ */
+    background-image: url('mechanic_cyberpunk_illustration.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.scanlines {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient( to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50% );
+    background-size: 100% 4px; z-index: 10; pointer-events: none; animation: flicker 0.15s infinite;
+}
+@keyframes flicker { 0% { opacity: 0.2; } 20% { opacity: 1; } 80% { opacity: 0.7; } 100% { opacity: 1; } }
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    background-color: rgba(10, 10, 10, 0.75); /* 半透明の背景 */
+    border: 1px solid var(--text-color);
+    box-shadow: 0 0 15px var(--shadow-color);
+    backdrop-filter: blur(3px); /* 背景を少しぼかす */
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+header { margin-bottom: 30px; }
+h1 { font-size: 2.5rem; text-shadow: 0 0 5px var(--shadow-color); margin: 0; }
+
+#links-container {
+    margin-top: 20px;
+    text-align: left;
+    min-height: 150px; /* リンクが表示されるエリアの高さを確保 */
+}
+#links-container a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 15px;
+    opacity: 0; /* JSで表示を制御するため最初は非表示 */
+    animation: fadeIn 0.5s forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#links-container a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+footer { margin-top: 40px; }
+.back-link { color: var(--text-color); text-decoration: none; font-size: 1.2rem; }
+.back-link:hover { background-color: var(--text-color); color: var(--bg-color); padding: 5px; }
+
+/* Glitch effect */
+.glitch { position: relative; display: inline-block; }
+.glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; background: rgba(10, 10, 10, 0.75); }
+.glitch::before { left: 2px; text-shadow: -2px 0 var(--glitch-color-1); animation: glitch-anim 3s infinite linear alternate-reverse; }
+.glitch::after { left: -2px; text-shadow: -2px 0 var(--glitch-color-2); animation: glitch-anim 2.5s infinite linear alternate-reverse; }
+@keyframes glitch-anim { 0% { clip-path: inset(89% 0 1% 0); } 100% { clip-path: inset(69% 0 18% 0); } }
