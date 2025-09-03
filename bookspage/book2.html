@@ -2,45 +2,45 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>本のタイトル1</title>
-    <script src="https://cdn.3dflipbook.net/js/jquery.min.js"></script>
-
-    <style>
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            z-index: 9999;
-            font-size: 16px;
-        }
-        .back-button:hover {
-            background-color: rgba(0, 0, 0, 0.9);
-        }
+    <title>AI取引Botの全機能ガイド</title> <style>
+        body { margin: 0; padding: 0; background-color: #333; }
+        .back-button { position: fixed; top: 20px; left: 20px; padding: 10px 20px; background-color: rgba(0, 0, 0, 0.7); color: white; text-decoration: none; border-radius: 5px; z-index: 9999; font-size: 16px; font-family: sans-serif; }
+        .back-button:hover { background-color: rgba(0, 0, 0, 0.9); }
+        .container { height: 100vh; width: 100%; } /* Flipbookを全画面表示 */
     </style>
 </head>
 <body>
     <a href="javascript:window.close();" class="back-button">閉じて戻る</a>
 
-    <div class="sample-container-box">
-      <div class="sample-container flip-book-container" src="books/pdf/AI取引Botの全機能ガイド.pdf">
-      </div>
-    </div>
+    <div class="container" id="container"></div>
 
-    <script src="js/three.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/html2canvas.min.js"></script> <script src="js/three.min.js"></script>
     <script src="js/pdf.min.js"></script>
-    <script type="text/javascript">
-      window.PDFJS_LOCALE = {
-        // ★★★★★ 変更点2：pdf.worker.jsのパスを確認 ★★★★★
-        pdfJsWorker: 'js/pdf.worker.js',
-        pdfJsCMapUrl: 'cmaps'
-      };
-    </script>
     <script src="js/3dflipbook.min.js"></script>
+
+    <script type="text/javascript">
+        // Flipbookの本体設定
+        $('#container').FlipBook({
+            // ★★★★★ ここに表示したいPDFのパスを指定します ★★★★★
+            pdf: 'books/pdf/AI取引Botの全機能ガイド.pdf',
+
+            // 表示デザインのテンプレート設定 (Free版では必須)
+            template: {
+                html: 'templates/default-book-view.html',
+                styles: [
+                    'css/white-book-view.css' // デザインテーマ (白背景)
+                ],
+                links: [
+                    {
+                        rel: 'stylesheet',
+                        href: 'css/font-awesome.min.css' // アイコン用CSS
+                    }
+                ],
+                script: 'js/default-book-view.js'
+            }
+        });
+    </script>
 
 </body>
 </html>
